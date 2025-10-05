@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nós 💞</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Great+Vibes&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top left, #ffafbd, #ffc3a0, #ffb6c1);
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      background: linear-gradient(90deg, #fff, #ffd6e0, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255,255,255,0.6);
+      animation: fadeIn 2s ease forwards, pulse 3s infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 15px #fff, 0 0 30px #ff9ab8; }
+      50% { text-shadow: 0 0 25px #fff, 0 0 45px #ff7aa3; }
+    }
+
+    .botao-nos {
+      margin-top: 2rem;
+      background: linear-gradient(90deg, #ff8fa3, #ffc3a0);
+      color: #fff;
+      border: none;
+      padding: 16px 36px;
+      font-size: 1.3rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(255,182,193,0.4);
+      transition: all 0.3s ease;
+      animation: fadeIn 3s ease forwards, floating 4s ease-in-out infinite;
+    }
+
+    .botao-nos:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 25px rgba(255,255,255,0.7);
+      background: linear-gradient(90deg, #ffc3a0, #ff8fa3);
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.9);
+      animation: floatUp 7s linear infinite;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+      opacity: 0.9;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Nós 💞</h1>
+  <button class="botao-nos" onclick="abrirNos()">Entrar</button>
+
+  <script>
+    function abrirNos() {
+      window.open('nos.html', '_blank');
+    }
+
+    // Corações animados
+    const emojis = ["💞","💫","🌸","💋","💖","💐"];
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 500);
+  </script>
+</body>
+</html>
+

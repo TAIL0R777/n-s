@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailor 💖 Lauren</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Great+Vibes&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: radial-gradient(circle at top left, #ffafbd, #ffc3a0, #ffb6c1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #fff, #ffd6e0, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255,255,255,0.6);
+      animation: fadeIn 2s ease forwards, pulse 3s infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 15px #fff, 0 0 30px #ff9ab8; }
+      50% { text-shadow: 0 0 25px #fff, 0 0 45px #ff7aa3; }
+    }
+
+    .contador {
+      font-size: 1.6rem;
+      background: rgba(255,255,255,0.25);
+      padding: 1rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(255, 182, 193, 0.5);
+      animation: fadeIn 2.5s ease forwards;
+      backdrop-filter: blur(8px);
+    }
+
+    button {
+      margin-top: 2rem;
+      background: linear-gradient(90deg, #ff8fa3, #ffc3a0);
+      color: #fff;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(255,182,193,0.4);
+      transition: all 0.3s ease;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255,255,255,0.7);
+      background: linear-gradient(90deg, #ffc3a0, #ff8fa3);
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.9);
+      animation: floatUp 8s linear infinite;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+      opacity: 0.9;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    .final {
+      font-size: 2rem;
+      color: #fff;
+      margin-top: 1rem;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff9ab8, 0 0 40px #ff9ab8; }
+      100% { text-shadow: 0 0 20px #fff, 0 0 40px #ff7aa3, 0 0 60px #ff7aa3; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Tailor 💫 Lauren</h1>
+  <div class="contador" id="contador"></div>
+
+  <button onclick="window.open('https://youtu.be/VWRkQARH-9o?si=zt-wuHcA5umRZXvZ', '_blank')">
+    🎵 Ouvir nossa música
+  </button>
+
+  <div id="mensagemFinal" class="final" style="display:none;">💋 É hora do beijo! 💋</div>
+
+  <script>
+    function atualizarContador() {
+      const agora = new Date();
+      const amanha = new Date();
+      amanha.setDate(amanha.getDate() + 1);
+      amanha.setHours(14, 0, 0, 0);
+
+      const diff = amanha - agora;
+      const contador = document.getElementById('contador');
+      const finalMsg = document.getElementById('mensagemFinal');
+
+      if (diff <= 0) {
+        contador.style.display = "none";
+        finalMsg.style.display = "block";
+        clearInterval(intervalo);
+        return;
+      }
+
+      const horas = Math.floor(diff / (1000 * 60 * 60));
+      const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+      contador.innerText = `${horas}h ${minutos}m ${segundos}s para nosso primeiro encontro! 💞`;
+    }
+
+    atualizarContador();
+    const intervalo = setInterval(atualizarContador, 1000);
+
+    const emojis = ["💞","💫","🌸","💋","💖","💐"];
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 500);
+  </script>
+</body>
+</html>
+
